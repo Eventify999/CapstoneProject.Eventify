@@ -14,7 +14,7 @@ namespace CustomerAPI.Modals
         public DateTime EventDate { get; set; }
         public int NumberOfGuests { get; set; }
         public string SpecialRequests { get; set; }
-        public decimal Budget { get; set; } 
+        public int Budget { get; set; } 
         public string Description {  get; set; }
     }
 }

@@ -1,4 +1,8 @@
 
+using AutoMapper;
+using CustomerAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace CustomerAPI
 {
     public class Program
@@ -14,6 +18,14 @@ namespace CustomerAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<CustomerDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("csCustomerDb"));
+            });
+
+            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+            builder.Services.AddSingleton(mapper);
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

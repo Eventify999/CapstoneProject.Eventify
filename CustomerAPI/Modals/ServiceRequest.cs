@@ -6,12 +6,12 @@ namespace CustomerAPI.Modals
     {
         [Key]
         public int RequestId { get; set; }
-
+        [Required]
+        public int CustomerId { get; set; }
         [Required]
         public int EventRequirementId { get; set; }
 
         public DateTime RequestedAt { get; set; }
         public string Status { get; set; } = "Pending"; // Pending / Accepted / Rejected
-
     }
 }

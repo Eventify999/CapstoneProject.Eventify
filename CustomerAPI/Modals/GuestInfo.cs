@@ -8,10 +8,10 @@ namespace CustomerAPI.Modals
         public int GuestId { get; set; }
 
         [Required]
-        public int EventRequirementId { get; set; }
+        public int RequestId { get; set; }
 
         public string GuestName { get; set; }
-        public string Email { get; set; }
         public string MealPreference { get; set; }
+        public bool IsAttending { get; set; }
     }
 }

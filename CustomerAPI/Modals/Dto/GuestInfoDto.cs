@@ -7,5 +7,6 @@
         public string GuestName { get; set; }
         public string Email { get; set; }
         public string MealPreference { get; set; }
+        public bool IsAttending { get; set; }
     }
 }
