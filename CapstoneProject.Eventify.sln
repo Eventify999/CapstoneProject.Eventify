@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerAPI", "CustomerAPI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendorsAPI", "VendorsAPI\VendorsAPI.csproj", "{60ACC4C4-8FA8-4BC9-8803-4F7DE89B4B6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagingAPI", "EventManagingAPI\EventManagingAPI.csproj", "{69ED0A44-2067-4177-8301-2CF5F62929D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{60ACC4C4-8FA8-4BC9-8803-4F7DE89B4B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60ACC4C4-8FA8-4BC9-8803-4F7DE89B4B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60ACC4C4-8FA8-4BC9-8803-4F7DE89B4B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69ED0A44-2067-4177-8301-2CF5F62929D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69ED0A44-2067-4177-8301-2CF5F62929D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69ED0A44-2067-4177-8301-2CF5F62929D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69ED0A44-2067-4177-8301-2CF5F62929D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F038C057-8D6D-49F4-9B93-7C172179EB28} = {7FA5BCCB-EAD5-4B27-BDF5-DB7058ECEB19}
 		{60ACC4C4-8FA8-4BC9-8803-4F7DE89B4B6B} = {7FA5BCCB-EAD5-4B27-BDF5-DB7058ECEB19}
+		{69ED0A44-2067-4177-8301-2CF5F62929D0} = {7FA5BCCB-EAD5-4B27-BDF5-DB7058ECEB19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C03D227-8673-4E20-8657-89F931C81C68}
