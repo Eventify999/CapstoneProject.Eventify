@@ -62,7 +62,7 @@ namespace EventManagingAPI.Controllers
 
         [HttpPut]
         [Route("Event/{id:int}")]
-        public ResponseDto UpdateToDo(int id,[FromBody] ToDoItemUpdateDTO toDoItemUpdateDTO)
+        public ResponseDto UpdateToDo(int id, [FromBody] ToDoItemUpdateDTO toDoItemUpdateDTO)
         {
             try
             {
@@ -86,5 +86,26 @@ namespace EventManagingAPI.Controllers
             }
             return _responseDto;
         }
+
+
+        [HttpDelete]
+        [Route("Event/{id:int}")]
+        public ResponseDto DeleteToDo(int id)
+        {
+            try
+            {
+                var item =_toDoItemRepository.GetById(id);
+                _toDoItemRepository.Remove(item);
+            }
+            catch (Exception ex)
+            {
+                _responseDto.IsSuccess = false;
+                _responseDto.Message = ex.Message;
+            }
+            return _responseDto;
+        }
     }
 }
+
+       
+

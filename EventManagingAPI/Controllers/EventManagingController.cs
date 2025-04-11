@@ -83,5 +83,23 @@ namespace EventManagingAPI.Controllers
             return _responseDto;
         }
 
+        [HttpDelete]
+        [Route("{id:int}")]
+        public ResponseDto DeleteById(int id)
+        {
+            try
+            {
+                var managedEvent = _managedEventRepository.GetById(id);
+                _managedEventRepository.Remove(managedEvent);
+
+            }
+            catch (Exception ex) 
+            {
+                _responseDto.IsSuccess=false;
+                _responseDto.Message = ex.Message;
+            }
+            return _responseDto;
+        }
+
     }
 }

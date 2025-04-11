@@ -102,5 +102,22 @@ namespace EventManagingAPI.Controllers
             return _responseDto;
         }
 
+        [HttpDelete("{id:int}")]
+        public ResponseDto DeleteItem(int id)
+        {
+            try
+            {
+                var items = _itemRequiredRepository.GetById(id);
+                _itemRequiredRepository.Remove(items);
+            }
+            catch (Exception ex)
+            {
+                _responseDto.IsSuccess = false;
+                _responseDto.Message = ex.Message;
+            }
+            return _responseDto;
+        }
+        
+
     }
 }
