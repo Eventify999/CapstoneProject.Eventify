@@ -26,6 +26,7 @@ namespace VendorAPI.Controllers
         {
             try
             {
+
                 var result = await _repo.SelectService(dto);
                 _response.Result = result;
                 _response.IsSuccess = true;

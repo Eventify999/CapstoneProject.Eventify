@@ -1,46 +1,58 @@
-﻿using AutoMapper;
+﻿using Microsoft.EntityFrameworkCore;
 using VendorAPI.Data;
-using VendorAPI.Models.dto;
 using VendorAPI.Models;
-using Microsoft.EntityFrameworkCore;
+using VendorAPI.Models.dto;
+using VendorAPI.Repository;
+using VendorsAPI.Models.dto;
 
-namespace VendorAPI.Repository
+public class AvailabilityRepository : IAvailabilityRepository
 {
-    public class AvailabilityRepository : IAvailabilityRepository
+    private readonly AppDbContext _context;
+
+    public AvailabilityRepository(AppDbContext context)
     {
-        private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
+        _context = context;
+    }
 
-        public AvailabilityRepository(AppDbContext context, IMapper mapper)
+    public async Task<BookedDatesResponseDto> GetBookedDates(int vendorId)
+    {
+        var bookedSlots = await _context.AvailabilitySlots
+            .Where(slot => slot.VendorId == vendorId && slot.IsBooked)
+            .ToListAsync();
+
+        // Collect all individual dates
+        var bookedDates = bookedSlots
+            .Select(slot => slot.BookedDate.Date)
+            .ToList();
+
+        return new BookedDatesResponseDto
         {
-            _context = context;
-            _mapper = mapper;
+            VendorId = vendorId,
+            BookedDates = bookedDates
+        };
+    }
+
+    public async Task<AvailabilitySlotDto> AddOrUpdateSlot(AvailabilitySlotDto dto)
+    {
+        var existingSlot = await _context.AvailabilitySlots
+            .FirstOrDefaultAsync(s => s.VendorId == dto.VendorId && s.BookedDate.Date == dto.BookedDate.Date);
+
+        if (existingSlot != null)
+        {
+            existingSlot.IsBooked = dto.IsBooked;
         }
-
-        public async Task<IEnumerable<AvailabilitySlot>> GetSlotsByVendorId(int vendorId)
+        else
         {
-            return await _context.AvailabilitySlots
-                .Where(s => s.VendorId == vendorId)
-                .ToListAsync();
-        }
-
-        public async Task<AvailabilitySlot> AddOrUpdateSlot(AvailabilitySlotDto dto)
-        {
-            var existing = await _context.AvailabilitySlots.FirstOrDefaultAsync(s =>
-                s.VendorId == dto.VendorId && s.StartTime == dto.StartTime && s.EndTime == dto.EndTime);
-
-            if (existing != null)
+            var newSlot = new AvailabilitySlot
             {
-                existing.IsAvailable = dto.IsAvailable;
-                await _context.SaveChangesAsync();
-                return existing;
-            }
-
-            var slot = _mapper.Map<AvailabilitySlot>(dto);
-            _context.AvailabilitySlots.Add(slot);
-            await _context.SaveChangesAsync();
-            return slot;
+                VendorId = dto.VendorId,
+                BookedDate = dto.BookedDate.Date,
+                IsBooked = dto.IsBooked
+            };
+            _context.AvailabilitySlots.Add(newSlot);
         }
+
+        await _context.SaveChangesAsync();
+        return dto;
     }
 }
-
