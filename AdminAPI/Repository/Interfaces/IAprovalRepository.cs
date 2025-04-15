@@ -1,6 +1,16 @@
-﻿namespace AdminAPI.Repository.Interfaces
+﻿using AdminAPI.Models;
+
+namespace AdminAPI.Repository.Interfaces
 {
-    public interface IAprovalRepository
+    public interface IApprovalRepository
     {
+        void Add(Approval approval);
+        void Update(Approval approval);
+        void Delete(Approval approval);
+        bool SaveChanges();
+
+        Approval GetStatus(int id);
+        IEnumerable<Approval> GetAll();
+
     }
 }

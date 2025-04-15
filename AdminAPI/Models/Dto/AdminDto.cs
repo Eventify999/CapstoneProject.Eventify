@@ -4,9 +4,9 @@ namespace AdminAPI.Models.Dto
 {
     public class AdminDto
     {
-        [Required]
+        public int id { get; set; }
         public string Username { get; set; }
-        [Required]
         public string Password { get; set; }
+
     }
 }

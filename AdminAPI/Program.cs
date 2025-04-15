@@ -1,4 +1,10 @@
 
+using AdminAPI.Data;
+using AdminAPI.Repository;
+using AdminAPI.Repository.Interfaces;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+
 namespace AdminAPI
 {
     public class Program
@@ -13,6 +19,14 @@ namespace AdminAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<AdminDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("csAdminDb")));
+            builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+            builder.Services.AddScoped<IApprovalRepository, ApprovalRepository>();
+
+            IMapper mapConfig = MappingConfig.RegisterMaps().CreateMapper();
+            builder.Services.AddSingleton(mapConfig);
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
 

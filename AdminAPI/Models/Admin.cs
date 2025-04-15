@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdminAPI.Models
 {
@@ -10,5 +11,10 @@ namespace AdminAPI.Models
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+
+        public int? AdminId { get; set; }
+
+        [ForeignKey("AdminId")]
+        public Admin? Admins { get; set; }
     }
 }
