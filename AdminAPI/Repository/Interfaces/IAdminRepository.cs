@@ -2,6 +2,6 @@
 {
     public interface IAdminRepository
     {
-        void Add(AdminAPI)
+        
     }
 }
