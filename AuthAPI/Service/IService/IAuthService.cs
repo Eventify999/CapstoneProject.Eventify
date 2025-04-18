@@ -8,6 +8,9 @@ namespace AuthAPI.Service.IService
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
 
         Task<bool> AssignRole(string email ,  string roleName);
+
+        Task<List<UserDto>> GetAllUsers();
+
     }
 
 }

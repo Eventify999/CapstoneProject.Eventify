@@ -2,7 +2,7 @@
 
 namespace AdminAPI.Repository.Interfaces
 {
-    public interface IApprovalRepository
+    public interface IAprovalRepository
     {
         void Add(Approval approval);
         void Update(Approval approval);

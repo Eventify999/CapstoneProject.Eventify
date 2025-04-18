@@ -89,6 +89,35 @@ namespace AuthAPI.Controllers
             return Ok(_response);
         }
 
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var users = await _authService.GetAllUsers();
+                _response.Result = users;
+                _response.IsSuccess = true;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, _response);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         //[HttpPost("AssignRole")]
         //public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto model)
         //{

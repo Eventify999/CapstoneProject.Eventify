@@ -22,7 +22,7 @@ namespace AdminAPI
 
             builder.Services.AddDbContext<AdminDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("csAdminDb")));
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
-            builder.Services.AddScoped<IApprovalRepository, ApprovalRepository>();
+            builder.Services.AddScoped<IAprovalRepository, AprovalRepository>();
 
             IMapper mapConfig = MappingConfig.RegisterMaps().CreateMapper();
             builder.Services.AddSingleton(mapConfig);

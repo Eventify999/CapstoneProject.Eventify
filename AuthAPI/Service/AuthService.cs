@@ -21,6 +21,26 @@ namespace AuthAPI.Service
             _roleManager = roleManager;
         }
 
+
+        public async Task<List<UserDto>> GetAllUsers()
+        {
+            var users = _userManager.Users.ToList(); // Or await _userManager.Users.ToListAsync();
+            return users.Select(u => new UserDto
+            {
+                ID = u.Id,
+                Email = u.Email,
+                Name = u.UserName,
+                PhoneNumber = u.PhoneNumber
+            }).ToList();
+        }
+
+
+
+
+
+
+
+
         public async Task<bool> AssignRole(string email, string roleName)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());

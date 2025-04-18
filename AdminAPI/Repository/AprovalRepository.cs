@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AdminAPI.Repository
 {
-    public class ApprovalRepository : IApprovalRepository
+    public class AprovalRepository : IAprovalRepository
     {
         private readonly AdminDbContext _adminDbContext;
 
-        public ApprovalRepository(AdminDbContext adminDbContext)
+        public AprovalRepository(AdminDbContext adminDbContext)
         {
             _adminDbContext = adminDbContext;
         }

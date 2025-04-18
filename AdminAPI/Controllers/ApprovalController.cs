@@ -12,11 +12,11 @@ namespace AdminAPI.Controllers
     [ApiController]
     public class ApprovalController : ControllerBase
     {
-        private readonly IApprovalRepository _approvalRepository;
+        private readonly IAprovalRepository _approvalRepository;
         private readonly IMapper _mapper;
         private readonly ResponseDto _responseDto;
 
-        public ApprovalController(IApprovalRepository approvalRepository, IMapper mapper)
+        public ApprovalController(IAprovalRepository approvalRepository, IMapper mapper)
         {
             _approvalRepository = approvalRepository;
             _mapper = mapper;
