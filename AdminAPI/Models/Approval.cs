@@ -14,5 +14,7 @@ namespace AdminAPI.Models
         public string DocumentsUrl { get; set; }
         [Required]
         public bool ApprovalStatus { get; set; } = false;
+
+        public int? AdminId { get; set; }
     }
 }
