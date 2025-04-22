@@ -65,3 +65,7 @@
 .row {
   margin-top: 50px;
 }
+
+.text-primary-color{
+  color: var(--primary-text-color);
+}

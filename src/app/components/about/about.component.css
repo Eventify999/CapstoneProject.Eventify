@@ -65,3 +65,7 @@ h2, h4 {
 .carousel-control-prev-icon, .carousel-control-next-icon {
   background-color: var(--primary-text-color);
 }
+
+.text-primary-color{
+  color: var(--primary-text-color);
+}

@@ -13,20 +13,13 @@ import { filter } from 'rxjs/operators';
 })
 export class NavbarComponent implements OnInit {
   isLogged: boolean = false;
-  isHomePage: boolean = true;
+
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.isLogged = sessionStorage.getItem('isLogged') === 'true';
-
-    // Watch for route changes
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      const currentUrl = event.urlAfterRedirects;
-      this.isHomePage = currentUrl === '/';
-    });
+    
   }
 
   goToLogin(): void {
