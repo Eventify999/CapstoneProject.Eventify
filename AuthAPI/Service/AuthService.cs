@@ -30,7 +30,6 @@ namespace AuthAPI.Service
                 ID = u.Id,
                 Email = u.Email,
                 Name = u.UserName,
-                PhoneNumber = u.PhoneNumber
             }).ToList();
         }
 
@@ -81,7 +80,6 @@ namespace AuthAPI.Service
                 Email = user.Email,
                 ID = user.Id,
                 Name = user.Name,
-                PhoneNumber = user.PhoneNumber
             };
 
             LoginResponseDto loginResponseDto = new LoginResponseDto()
@@ -101,7 +99,7 @@ namespace AuthAPI.Service
                 Email = registrationRequestDto.Email,
                 NormalizedEmail = registrationRequestDto.Email,
                 Name = registrationRequestDto.Name,
-                PhoneNumber = registrationRequestDto.PhoneNumber
+              //  Role = registrationRequestDto.Role
             };
 
             try
@@ -118,8 +116,7 @@ namespace AuthAPI.Service
                         Email = userToReturn.Email,
                         ID = userToReturn.Id,
                         Name = userToReturn.Name,
-                        PhoneNumber = userToReturn.PhoneNumber
-
+                      //  Role = userToReturn.Role 
                     };
 
                     return "";
