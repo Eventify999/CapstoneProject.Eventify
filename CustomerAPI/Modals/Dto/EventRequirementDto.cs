@@ -3,7 +3,7 @@
     public class EventRequirementDto
     {
         public int EventRequirementId { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public string EventType { get; set; }
         public string Location { get; set; }
         public DateTime EventDate { get; set; }

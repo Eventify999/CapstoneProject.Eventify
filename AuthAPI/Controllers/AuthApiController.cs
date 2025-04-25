@@ -1,4 +1,5 @@
-﻿using AuthAPI.Models;
+﻿
+using AuthAPI.Models;
 
 using AuthAPI.Models.Dto;
 
@@ -267,6 +268,3 @@ namespace AuthAPI.Controllers
     }
 
 }
-
-
-

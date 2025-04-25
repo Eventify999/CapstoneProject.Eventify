@@ -5,7 +5,8 @@ namespace CustomerAPI.Modals
     public class Customer
     {
         [Key]
-        public int CustomerId { get; set; }
+        [Required]
+        public string CustomerId { get; set; }
         [Required]
         public string CustomerName { get; set; }
         [Required]

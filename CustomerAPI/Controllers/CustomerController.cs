@@ -38,8 +38,8 @@ namespace CustomerAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
-        public ResponseDto GetCustomer(int id)
+        [Route("{id}")]
+        public ResponseDto GetCustomer(string id)
         {
             try
             {
@@ -60,17 +60,21 @@ namespace CustomerAPI.Controllers
             try
             {
                 Customer obj = _mapper.Map<Customer>(customerDto);
+                obj.CreatedAt = DateTime.UtcNow;
+
                 _customerDbContext.Customers.Add(obj);
                 _customerDbContext.SaveChanges();
-                _responseDto.Result= _mapper.Map<CustomerDto>(obj);
+
+                _responseDto.Result = _mapper.Map<CustomerDto>(obj);
             }
             catch (Exception ex)
             {
-                _responseDto.IsSuccess= false;
+                _responseDto.IsSuccess = false;
                 _responseDto.Message = ex.Message;
             }
             return _responseDto;
         }
+
 
         [HttpPut]
         public ResponseDto UpdateCustomerDetails([FromBody] CustomerDto customerDto)
@@ -91,8 +95,8 @@ namespace CustomerAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:int}")]
-        public ResponseDto DeleteCustomer(int id)
+        [Route("{id}")]
+        public ResponseDto DeleteCustomer(string id)
         {
             try
             {

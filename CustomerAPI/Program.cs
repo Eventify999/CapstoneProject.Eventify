@@ -26,6 +26,23 @@ namespace CustomerAPI
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             builder.Services.AddSingleton(mapper);
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddCors(options =>
+
+            {
+
+                options.AddPolicy("AllowAngularApp", policy =>
+
+                {
+
+                    policy.WithOrigins("http://localhost:4200")
+
+                       .AllowAnyHeader()
+
+                       .AllowAnyMethod();
+
+                });
+
+            });
             var app = builder.Build();
 
 
@@ -34,6 +51,7 @@ namespace CustomerAPI
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors("AllowAngularApp");
             }
 
             app.UseHttpsRedirection();

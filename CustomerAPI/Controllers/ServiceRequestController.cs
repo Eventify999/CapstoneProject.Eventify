@@ -38,13 +38,15 @@ namespace CustomerAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
-        public ResponseDto GetServiceRequest(int id)
+        [Route("{id}")]
+        public ResponseDto GetServiceRequest(string id)
         {
             try
             {
-                ServiceRequest objList = _customerDbContext.ServiceRequests.First(u => u.RequestId == id);
-                _responseDto.Result = _mapper.Map<ServiceRequest>(objList);
+                List<ServiceRequest> objList = _customerDbContext.ServiceRequests
+                    .Where(u => u.CustomerId == id)
+                    .ToList();
+                _responseDto.Result = _mapper.Map<List<ServiceRequest>>(objList);
             }
             catch (Exception ex)
             {

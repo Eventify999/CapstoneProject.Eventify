@@ -7,7 +7,7 @@ namespace CustomerAPI.Modals
         [Key]
         public int RequestId { get; set; }
         [Required]
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         [Required]
         public int EventRequirementId { get; set; }
 

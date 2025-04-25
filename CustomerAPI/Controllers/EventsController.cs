@@ -38,6 +38,25 @@ namespace CustomerAPI.Controllers
         }
 
         [HttpGet]
+        [Route("customer/{id}")]
+        public ResponseDto GetEventByCustomer(string id)
+        {
+            try
+            {
+                List<EventRequirements> objList = _customerDbContext.EventRequirements
+                    .Where(u => u.CustomerId == id)
+                    .ToList();
+                _responseDto.Result = _mapper.Map<List<EventRequirementDto>>(objList);
+            }
+            catch (Exception ex)
+            {
+                _responseDto.IsSuccess = false;
+                _responseDto.Message = ex.Message;
+            }
+            return _responseDto;
+        }
+
+        [HttpGet]
         [Route("{id:int}")]
         public ResponseDto GetEvent(int id)
         {
